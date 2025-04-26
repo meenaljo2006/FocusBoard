@@ -1,28 +1,92 @@
 import { useState } from "react";
 import Logo from "../components/logo.jsx"
 import './register.css'
+
+import { FcGoogle } from "react-icons/fc"; // Google icon
+import { FaFacebook, FaGithub } from "react-icons/fa"; // Facebook and GitHub
+
+import { auth,googleProvider } from "../firebase.js";
+import { createUserWithEmailAndPassword,signInWithPopup,signInWithEmailAndPassword } from "firebase/auth";
+
+import { motion } from "framer-motion";
+
 function Register() {
 
   const [isSignIn, setIsSignIn] = useState(true);
+
+  const[email,setEmail] = useState("");
+  const[password,setPassword] = useState("");
+  const[name,setName] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+
+  const signUp = async (e) => {
+    e.preventDefault();
+    try{
+        await createUserWithEmailAndPassword(auth,email,password);
+        console.log(auth.currentUser.email);
+        setName("");
+        setEmail("");
+        setPassword("");
+    } catch(error){
+        console.error(error);
+        if (error.code === "auth/invalid-email") {
+          setErrorMessage("Please enter a valid email address.");
+        }
+    }  
+  };
+
+  const signInWithGoogle = async (e) => {
+    e.preventDefault();
+    try{
+        await signInWithPopup(auth,googleProvider);
+    } catch(error){
+        console.error(error);
+    }  
+  };
+
+  const signIn = async (e) => {
+    e.preventDefault();
+    try{
+        await signInWithEmailAndPassword(auth,email,password);
+        alert("logged in succesfully");
+        setEmail("");
+        setPassword("");
+        setErrorMessage("");
+    } catch(error){
+        console.error(error);
+        if (error.code === "auth/invalid-credential") {
+          setErrorMessage("User does not exist. Please register first.");
+        } else if (error.code === "auth/wrong-password") {
+            setErrorMessage("Incorrect password. Please try again.");
+        } else if (error.code === "auth/invalid-email") {
+            setErrorMessage("Please enter a valid email address.");
+        } else {
+            setErrorMessage("Something went wrong. Please try again.");
+        }
+    }  
+  };
 
   return(
       <>
           <Logo/>
           <div className="main">
               <div className={`box ${isSignIn ? '' : 'right-panel-active'}`}>
+
                   <div className="formBox RegisterBox">
                       <form>
                           <h1>Create Account</h1>
                           <div className="social-container">
-                              <a href="#" className="social">G</a>
-                              <a href="#" className="social">f</a>
-                              <a href="#" className="social">Git</a>
+                              <button onClick={signInWithGoogle}className="social"><FcGoogle size={24} /></button>
+                              <button className="social"><FaGithub size={24}color="black" /></button>
                           </div>
                           <span>or use your email for registration</span>
-                          <input type="text" placeholder="Name" />
-                          <input type="email" placeholder="Email" />
-                          <input type="password" placeholder="Password" />
-                          <button>Sign Up</button>
+                          <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value) }></input>
+                          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value) }></input>
+                          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
+                          {errorMessage && <p className="error">{errorMessage}</p>}
+                          <motion.button whileTap={{ scale: 0.85 }} onClick={signUp}>Sign Up</motion.button>
                           
                       </form>
                   </div>
@@ -31,40 +95,34 @@ function Register() {
                       <form>
                           <h1>Sign In</h1>
                           <div className="social-container">
-                              <a href="#" className="social">G</a>
-                              <a href="#" className="social">f</a>
-                              <a href="#" className="social">Git</a>
+                            <button onClick={signInWithGoogle}className="social"><FcGoogle size={24} /></button>
+                            <button className="social"><FaGithub size={24}color="black" /></button>
                           </div>
                           <span>or use your email account</span>
-                          <input type="email" placeholder="Email" />
-                          <input type="password" placeholder="Password" />
-                          <a href="#">Forgot your password?</a>
-                          <button>Sign In</button>
+                          <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
+                          <input type="password" placeholder="Password" value={password}onChange={(e) => setPassword(e.target.value)}></input>
+                          {errorMessage && <p className="error">{errorMessage}</p>}
+                          <motion.button whileTap={{ scale: 0.85 }} onClick={signIn}>Sign In</motion.button>
                       </form>
                   </div>
 
 
                   <div className="overlay-container">
-      <div className="overlay">
-        <div className="overlay-panel overlay-left">
-          <h1>Welcome Back!</h1>
-          <p>To keep connected with us, please login with your personal info</p>
-          <button className="ghost" onClick={() => setIsSignIn(true)}>
-            Sign In
-          </button>
-        </div>
-        <div className="overlay-panel overlay-right">
-          <h1>Hello, Friend!</h1>
-          <p>Enter your details and start journey with us</p>
-          <button className="ghost" onClick={() => setIsSignIn(false)}>
-            Sign Up
-          </button>
-        </div>
-      </div>
-    </div>
+                    <div className="overlay">
+                      <div className="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us, please login with your personal info</p>
+                        <motion.button whileTap={{ scale: 0.85 }} className="ghost" onClick={() => setIsSignIn(true)}>Sign In</motion.button>
+                      </div>
+                      <div className="overlay-panel overlay-right">
+                        <h1>Hello, Friend!</h1>
+                        <p>Enter your details and start journey with us</p>
+                        <motion.button whileTap={{ scale: 0.85 }} className="ghost" onClick={() => setIsSignIn(false)}>Sign Up</motion.button>
+                      </div>
+                    </div>
+                  </div>
                   
               </div>
-              
 
           </div>
 
