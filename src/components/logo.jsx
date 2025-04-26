@@ -1,7 +1,7 @@
 import './logo.css'
-const Logo = () => {
+function Logo() {
     return (
-      <div>
+      <div className='logo'>
         <img src="./src/assets/icon.png" alt="Logo" />
         <h2>Focus Board</h2>
       </div>

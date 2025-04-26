@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import './App.css'
-import Logo from './components/logo'
+import Register from './pages/register'
 
 function App() {
 
   return (
     <>
-    <Logo/>
+    <Register/>
       
     </>
   )
