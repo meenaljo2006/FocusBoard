@@ -135,7 +135,7 @@ button {
 }
   
 .overlay {
-  background: linear-gradient(to right, #5375b1, #5b86e5);
+  background: linear-gradient(to right, #5c79aa, #194a7a);
   color: #fff;
   position: relative;
   left: -100%;

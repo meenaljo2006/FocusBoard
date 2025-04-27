@@ -11,6 +11,8 @@ import { createUserWithEmailAndPassword,signInWithPopup,signInWithEmailAndPasswo
 
 import { motion } from "framer-motion";
 
+import { Link } from 'react-router-dom'; 
+
 function Register() {
 
   const [isSignIn, setIsSignIn] = useState(true);
@@ -73,7 +75,7 @@ function Register() {
 
   return(
       <>
-          <Logo/>
+          <Link to="/"><Logo /></Link>
           <div className="main">
               <div className={`box ${isSignIn ? '' : 'right-panel-active'}`}>
 
@@ -126,12 +128,12 @@ function Register() {
                     <div className="overlay">
                       <div className="overlay-panel overlay-left">
                         <h1>Welcome Back!</h1>
-                        <p>To keep connected with us, please login with your personal info</p>
+                        <p>To keep connected with us, Please Login.</p>
                         <motion.button whileTap={{ scale: 0.85 }} className="ghost" onClick={() => setIsSignIn(true)}>Sign In</motion.button>
                       </div>
                       <div className="overlay-panel overlay-right">
                         <h1>Hello, Friend!</h1>
-                        <p>Enter your details and start journey with us</p>
+                        <p>Enter your details and start journey with us.</p>
                         <motion.button whileTap={{ scale: 0.85 }} className="ghost" onClick={() => setIsSignIn(false)}>Sign Up</motion.button>
                       </div>
                     </div>
