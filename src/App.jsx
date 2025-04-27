@@ -55,9 +55,9 @@ function App() {
             <Link to="/"><Logo /></Link>
 
             <nav className="navbar">
-              <ScrollLink to="features" smooth={true} duration={500} className="navbar-link">Features</ScrollLink>
-              <ScrollLink to="demo" smooth={true} duration={500} className="navbar-link">Watch Demo</ScrollLink>
-              <ScrollLink to="faq" smooth={true} duration={500} className="navbar-link">FAQ</ScrollLink>
+              <ScrollLink to="features" smooth={true} duration={500} offset={-80} className="navbar-link">Features</ScrollLink>
+              <ScrollLink to="demo" smooth={true} duration={500} offset={-80} className="navbar-link">Watch Demo</ScrollLink>
+              <ScrollLink to="faq" smooth={true} duration={500} offset={-80} className="navbar-link">FAQ</ScrollLink>
 
             </nav>
 

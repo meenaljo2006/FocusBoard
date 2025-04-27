@@ -1,4 +1,4 @@
-// src/components/FAQSection.jsx
+
 import { useState } from 'react';
 import './faq.css';
 
@@ -21,7 +21,7 @@ const faqs = [
   
 ];
 
-export default function FAQSection() {
+function FAQSection() {
   const [openIndex, setOpenIndex] = useState(null);
 
   const toggle = (i) => {
@@ -30,25 +30,20 @@ export default function FAQSection() {
 
   return (
     <>
-    
       {faqs.map((f, i) => (
         <div key={i} className="faq-item">
-          <div
-            className={`faq-question ${openIndex === i ? 'open' : ''}`}
+          <div className={`faq-question ${openIndex === i ? 'open' : ''}`}
             onClick={() => toggle(i)}
           >
-            
             <span className="question-text">{f.question}</span>
-            
             <span className="plus">+</span>
           </div>
-          {openIndex === i && (
-            <div className="faq-answer">
-              <p>{f.answer}</p>
-            </div>
-          )}
+          {openIndex === i && (<div className="faq-answer"><p>{f.answer}</p></div>)}
         </div>
       ))}
+
     </>
   );
 }
+
+export default FAQSection;
