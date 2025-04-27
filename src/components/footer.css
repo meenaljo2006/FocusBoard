@@ -11,6 +11,10 @@
     font-family: Arial, sans-serif;
 }
 
+.footer:hover{
+  opacity: 0.8;
+}
+
 @media (max-width:761px){
 
     .footer{
