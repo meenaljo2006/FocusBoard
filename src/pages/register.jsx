@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Logo from "../components/logo.jsx"
+import Footer from "../components/footer.jsx"
 import './register.css'
 
 import { FcGoogle } from "react-icons/fc"; // Google icon
@@ -18,7 +19,8 @@ function Register() {
   const[password,setPassword] = useState("");
   const[name,setName] = useState("");
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [signInError, setSignInError] = useState("");
+  const [signUpError, setSignUpError] = useState("");
 
 
   const signUp = async (e) => {
@@ -32,7 +34,7 @@ function Register() {
     } catch(error){
         console.error(error);
         if (error.code === "auth/invalid-email") {
-          setErrorMessage("Please enter a valid email address.");
+          setSignUpError("Please enter a valid email address.");
         }
     }  
   };
@@ -53,20 +55,21 @@ function Register() {
         alert("logged in succesfully");
         setEmail("");
         setPassword("");
-        setErrorMessage("");
+        setSignInError("");
     } catch(error){
         console.error(error);
         if (error.code === "auth/invalid-credential") {
-          setErrorMessage("User does not exist. Please register first.");
+          setSignInError("User does not exist. Please register first.");
         } else if (error.code === "auth/wrong-password") {
-            setErrorMessage("Incorrect password. Please try again.");
+            setSignInError("Incorrect password. Please try again.");
         } else if (error.code === "auth/invalid-email") {
-            setErrorMessage("Please enter a valid email address.");
+            setSignInError("Please enter a valid email address.");
         } else {
-            setErrorMessage("Something went wrong. Please try again.");
+            setSignInError("Something went wrong. Please try again.");
         }
-    }  
+    };
   };
+
 
   return(
       <>
@@ -85,10 +88,16 @@ function Register() {
                           <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value) }></input>
                           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value) }></input>
                           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-                          {errorMessage && <p className="error">{errorMessage}</p>}
+                          {signUpError && <p className="error">{signUpError}</p>} 
                           <motion.button whileTap={{ scale: 0.85 }} onClick={signUp}>Sign Up</motion.button>
                           
                       </form>
+
+                      <p className="toggleText">
+                        Already have an account?{' '}
+                        <span className="toggleLink" onClick={() => setIsSignIn(true)}>Login</span>
+                      </p>
+
                   </div>
                   
                   <div className="formBox LoginBox">
@@ -101,9 +110,15 @@ function Register() {
                           <span>or use your email account</span>
                           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
                           <input type="password" placeholder="Password" value={password}onChange={(e) => setPassword(e.target.value)}></input>
-                          {errorMessage && <p className="error">{errorMessage}</p>}
+                          {signInError && <p className="error">{signInError}</p>}
                           <motion.button whileTap={{ scale: 0.85 }} onClick={signIn}>Sign In</motion.button>
                       </form>
+
+                      <p className="toggleText">
+                        Don't have an account?{' '}
+                        <span className="toggleLink" onClick={() => setIsSignIn(false)}>Register</span>
+                      </p>
+
                   </div>
 
 
@@ -126,9 +141,8 @@ function Register() {
 
           </div>
 
-      
-
-          
+          <Footer/>
+             
       </>
   );
 }
