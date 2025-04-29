@@ -11,6 +11,7 @@
     left:0;
     overflow:hidden;
     padding-top: 30px;
+    
 }
   
 .sidebar.collapsed {
@@ -23,83 +24,101 @@
 }
   
   /* Header */
-.header {
+.sideHeader {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 1.5rem;
     background-color: aliceblue;
+    /* justify-content: center; */
+    align-items: center;
 }
   
-.header .logo-text {
+.sideHeader .logo-text {
     font-weight: bold;
-    font-size: 1.125rem;
+    font-size: 1.5rem;
+    margin-right: 15px;
 }
 
-button{
+.collapsingBtn{
     background-color: aliceblue;
     border: none;
     border-radius: 0;
     color: black;
     padding: 0;
     margin: 0;
-
+    width:10px;
+    margin-right: 45px;
 }
+
+.collapsingBtn img{
+    height: 40px;
+}
+
   /* Profile */
-  .profile {
+.profile {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
+    margin-bottom: 2rem;
+}
   
-  .profile img {
+.profile-initial {
+    background-color: #2f5a97;
+    color: white;
     width: 40px;
     height: 40px;
+    font-size: 18px;
     border-radius: 50%;
-  }
-  
-  .profile-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.profile-info {
     display: flex;
     flex-direction: column;
-  }
+}
   
-  .profile-info h4 {
+.profile-info h4 {
     font-size: 0.875rem;
     font-weight: 600;
     margin: 0;
-  }
+}
   
-  .profile-info p {
+.profile-info p {
     font-size: 0.75rem;
     color: #6b7280;
     margin: 0;
-  }
+}
   
-  /* Menu Items */
-  .menu-item {
+/* Menu Items */
+.menu-item {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
     cursor: pointer;
     transition: color 0.3s ease;
-  }
-  
-  .menu-item:hover {
-    color: #7e3af2;
-  }
-  
-  .menu-item.active {
-    color: #7e3af2;
-  }
-  
-  .menu-item span {
+    padding: 10px;
+    border-radius: 4px;
+    background-color: initial;
+    color: #194a7a;
+    border: 1px solid #194a7a;
+    
+}
+
+.menu-item:hover {
+    background:#194a7a;
+    color: white;
+}
+
+.menu-item span {
     display: inline-block;
     transition: opacity 0.3s ease;
-  }
-  
-  .menu-item.collapsed span {
+}
+
+.menu-item.collapsed span {
     opacity: 0;
-  }
+}
   
+

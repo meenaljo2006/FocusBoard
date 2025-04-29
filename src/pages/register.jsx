@@ -8,6 +8,7 @@ import { FaFacebook, FaGithub } from "react-icons/fa"; // Facebook and GitHub
 
 import { auth,googleProvider } from "../firebase.js";
 import { createUserWithEmailAndPassword,signInWithPopup,signInWithEmailAndPassword } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 
 import { motion } from "framer-motion";
 
@@ -32,13 +33,19 @@ function Register() {
   const signUp = async (e) => {
     e.preventDefault();
     try{
-        await createUserWithEmailAndPassword(auth,email,password);
+        const userCredential = await createUserWithEmailAndPassword(auth,email,password);
+        const user = userCredential.user;
+        await updateProfile(user, {
+          displayName: name,
+        });
+
         console.log(auth.currentUser.email);
         setName("");
         setEmail("");
         setPassword("");
         setSignUpError("");
         
+        await updateProfile(user, { displayName: name });
         navigate("/Dashboard"); //Redirect after signup
 
     } catch(error){
@@ -53,6 +60,7 @@ function Register() {
     e.preventDefault();
     try{
         await signInWithPopup(auth,googleProvider);
+        navigate("/Dashboard");
     } catch(error){
         console.error(error);
     }  
@@ -62,7 +70,8 @@ function Register() {
     e.preventDefault();
     try{
         await signInWithEmailAndPassword(auth,email,password);
-        alert("logged in succesfully");
+        // alert("logged in succesfully");
+
         setEmail("");
         setPassword("");
         setSignInError("");

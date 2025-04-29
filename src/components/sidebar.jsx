@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Home, FolderKanban, Hourglass, LogOut } from "lucide-react";
 import "./sidebar.css"; 
+import { auth } from "../firebase";
+
+import { onAuthStateChanged } from "firebase/auth";
 
 const menuItems = [
   { icon: <Home size={20} />, label: "Dashboard" },
@@ -10,24 +13,42 @@ const menuItems = [
 ];
 
 export default function Sidebar() {
-  const [isCollapsed, setIsCollapsed] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [userInitial, setUserInitial] = useState("");
+    const [displayName, setDisplayName] = useState("");
+    const [userEmail, setUserEmail] = useState("");
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, async (user) => {
+          if (user) {
+            const updatedUser = auth.currentUser;
+            const name = updatedUser.displayName || updatedUser.email;
+            setDisplayName(name);
+            setUserInitial(name?.charAt(0).toUpperCase());
+            setUserEmail(updatedUser.email); // <-- this was missing!
+          }
+        });
+      
+        return () => unsubscribe();
+      }, []);
+      
 
   return (
     <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       {/* Header */}
-      <div className="header">
-        <span className="logo-text">{!isCollapsed && "Focus Board"}</span>
-        <button onClick={() => setIsCollapsed(!isCollapsed)} >☰</button>
+      <div className="sideHeader">
+        
+        <span className="logo-text"> {!isCollapsed && "Focus Board"}</span>
+        <button class="collapsingBtn" onClick={() => setIsCollapsed(!isCollapsed)} ><img src="src\assets\icon.png"></img></button>
       </div>
 
       {/* Profile */}
       <div className="profile">
-        <img src="https://i.pravatar.cc/40" alt="Profile" />
+        <div className="profile-initial">{userInitial}</div>
         {!isCollapsed && (
           <div className="profile-info">
-            <h4>Ajendra S.</h4>
-            <p>UI/UX Designer</p>
+            <h4>{displayName}</h4>
+            <p>{userEmail}</p>
           </div>
         )}
       </div>
