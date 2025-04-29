@@ -11,7 +11,8 @@ import { createUserWithEmailAndPassword,signInWithPopup,signInWithEmailAndPasswo
 
 import { motion } from "framer-motion";
 
-import { Link } from 'react-router-dom'; 
+import { Link,useNavigate } from 'react-router-dom'; 
+
 
 function Register() {
 
@@ -24,6 +25,9 @@ function Register() {
   const [signInError, setSignInError] = useState("");
   const [signUpError, setSignUpError] = useState("");
 
+  const navigate = useNavigate();
+
+
 
   const signUp = async (e) => {
     e.preventDefault();
@@ -33,6 +37,10 @@ function Register() {
         setName("");
         setEmail("");
         setPassword("");
+        setSignUpError("");
+        
+        navigate("/Dashboard"); //Redirect after signup
+
     } catch(error){
         console.error(error);
         if (error.code === "auth/invalid-email") {
@@ -58,6 +66,9 @@ function Register() {
         setEmail("");
         setPassword("");
         setSignInError("");
+
+        navigate("/Dashboard"); //Redirect after signup
+
     } catch(error){
         console.error(error);
         if (error.code === "auth/invalid-credential") {
