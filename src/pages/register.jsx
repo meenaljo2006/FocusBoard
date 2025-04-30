@@ -96,7 +96,7 @@ function Register() {
   return(
       <>
           <Link to="/"><Logo /></Link>
-          <div className="main">
+          <div className="mainBox">
               <div className={`box ${isSignIn ? '' : 'right-panel-active'}`}>
 
                   <div className="formBox RegisterBox">

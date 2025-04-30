@@ -1,3 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+
 a {
     text-decoration: none; /* Remove default underline */
     color: inherit; /* Inherit text color from the parent */
@@ -12,6 +23,8 @@ a {
     z-index:1000;
     background-color: #d1dbe4;
     margin-bottom: 20px;
+    padding: 20px;
+    
 }
 
 /* Navbar styling */
@@ -127,6 +140,7 @@ a {
     font-family:cursive;
     font-weight: 400;
     margin-top: 50px;
+    text-align: center;
 }
 
 .cardSection{
@@ -139,7 +153,7 @@ a {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     padding: 2rem;
-    width: 200px;
+    width: 300px;
     text-align: center;
     transition: transform 0.3s ease;
     margin-right: 30px;
@@ -175,10 +189,18 @@ a {
     object-fit: cover; /* video fills the container */
 }
 
+.demoVideo h1{
+    margin-top: 30px;
+}
+
 .faq{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.faq h1{
+    text-align: center;
 }
 
 .question{
@@ -187,7 +209,131 @@ a {
     width: 80%;
 }
 
+/* Medium devices (tablets, 595px - 1024px) */
+@media (min-width: 595px) and (max-width: 1024px) {
+    .main {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 2rem;
+    }
+    
+    .left, .right {
+        flex: unset;
+        width: 100%;
+    }
+    
+    .feature-card {
+        width: 250px;
+        margin: 1rem;
+    }
+    
+    .cardSection {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .navbar-link {
+        font-size: 18px;
+    }
 
+}
+
+
+/* Small devices (phones, < 595px) */
+@media (max-width: 595px) {
+
+    .header{
+        flex-direction: column;
+        margin-top: 20px;
+        margin-bottom: 5px;
+    }
+
+    .header .logo h2{
+        font-size:40px;
+    }
+
+    .navbar {
+        flex-direction: row;
+        gap: 30px;
+        margin: 10px 0;
+
+        position: relative;
+        left: 10px;
+    }
+    
+    .navbar-link {
+        font-size: 20px;
+    }
+
+    .main {
+      flex-direction: column;
+      text-align: center;
+      padding: 0 1rem;
+    }
+  
+    .title {
+      font-size: 32px;
+    }
+  
+    .desc {
+      font-size: 16px;
+    }
+  
+    .left button {
+      width: 80%;
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+  
+    .right img {
+      max-width: 100%;
+    }
+
+    .features h1,
+    .demoVideo h1{
+        margin-top: 0;
+    }
+  
+    .cardSection {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .feature-card {
+      width: 90%;
+      margin: 1rem 0;
+    }
+
+    .faq .question {
+      width: 95%;
+    }
+
+}
+
+@media (max-width: 340px) {
+
+    .main{
+        margin-bottom: 20px;
+    }
+
+    .header{
+        padding-bottom: 10px;
+    }
+
+    .header .logo {
+        position: relative;
+        left: 2px;
+    }
+
+    .header .logo h2{
+        font-size: 30px ;
+    }
+
+    .navbar-link{
+        font-size:15px ;
+    }
+}
+  
 
   
   

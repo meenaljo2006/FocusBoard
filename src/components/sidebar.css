@@ -6,7 +6,7 @@
     padding: 1rem;
     background-color: aliceblue;
     color: #1f2937;
-    position: absolute;
+    position: fixed;
     top: 0;
     left:0;
     overflow:hidden;
@@ -15,12 +15,12 @@
 }
   
 .sidebar.collapsed {
-    width: 40px;
+    width: 80px;
     align-items: center;
 }
   
 .sidebar:not(.collapsed) {
-    width: 200px;
+    width: 250px;
 }
   
   /* Header */
@@ -35,7 +35,8 @@
 .sideHeader .logo-text {
     font-weight: bold;
     font-size: 1.5rem;
-    margin-right: 15px;
+    margin-right: 13px;
+    margin-left: 13px;
 }
 
 .collapsingBtn{

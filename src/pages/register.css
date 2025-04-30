@@ -1,9 +1,10 @@
-.main{
+.mainBox{
   height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 60px;
 }
 
 /* Registration & Login Box */
@@ -22,7 +23,7 @@
   position: absolute;
   top: 0;
   height: 100%;
-  padding-top: 20px;
+  padding-top: 50px;
   transition: all 0.6s ease-in-out;
 
 }
@@ -246,6 +247,9 @@ button:hover {
     font-family:Arial, Helvetica, sans-serif;
   }
 
+  .footer{
+    margin-top: 100px;
+  }
   
 
 }
