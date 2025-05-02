@@ -256,7 +256,7 @@ function ProjectsPage() {
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                           >
-                            {task.name}
+                            ⁍ {task.name}
                           </div>
                         )}
                       </Draggable>
