@@ -1,8 +1,4 @@
-.dashboard {
-  padding: 20px;
-  margin-left: 100px;
-}
-
+/* INPUT-BOX */
 .project-input {
   display: flex;
   flex-direction: row;
@@ -11,9 +7,9 @@
 }
 
 .project-input input {
-  /* padding: 10px; */
-  margin-right: 10px;
-
+  width: 50%;
+  background-color: white;
+  margin-left: 100px;
 }
 
 .project-input button {
@@ -33,54 +29,171 @@
   font-size: 10px;
 }
 
-.columns {
+
+/* YOUR PROJECTS SECTION */
+.project-list {
+    margin: 10px 20px auto 100px;
+    padding: 10px;
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif; 
+}
+
+.project-list p{
+  margin: 20px auto 20px 20px;
+  text-align:left;
+
+}
+  
+.project-list h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.project-list ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap:20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project-list li {
+  background-color: #f0f4ff;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  border-left: 6px solid #25368d; /* indigo-600 */
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  width: 10%;
+  min-width: 200px;
+  height: 30%;
+}
+
+.project-list li:hover {
+  background-color: #e0e7ff;
+}
+
+.project-list strong {
+  font-size: 1.1rem;
+  color: #1e3a8a;
+}
+
+.project-list small {
+  display: block;
+  color: #555;
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+.project-buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.view-btn{
+    background-color:white ;
+    border: 1px solid #25368d;
+    color: #25368d;
+    width: 50%;
+    text-align: center;
+    padding:5px;
+}
+
+.delete-btn {
+    all: unset; /* Remove all browser and inherited styles */
+    color: #25368d;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size:25px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top:5px;
+  }
+
+.delete-btn:hover{
+  color: red;
+}
+
+/* POPUP SECTION */
+.Modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000; /* Ensure the modal is above other content */
+  padding-left: 80px; /* Exclude sidebar space */
+}
+
+.taskModal {
+  background-color: white;
+  padding: 20px;
+  max-width: 700px;
+  width: 80%; /* Control the size of the modal */
+  border-radius: 10px;
+  border: 1px solid black;
+  margin: 0 auto; /* Center the modal */
+}
+
+.taskHeader{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.addTask{
+  display: flex;
+}
+
+.addTask input{
+  width:100%;
+  margin-top: 10px;
+}
+
+.addTask button{
+  all:unset;
+  margin-left: 10px;
+  border-radius: 50%;
+  background-color: #194a7a;
+  color: white;
+  text-align: center;
+}
+
+.task-columns {
   display: flex;
   gap: 20px;
   margin-top: 20px;
 }
 
-.column {
+.task-column {
   flex: 1;
-  min-height: 200px;
-  background: #f5f5f5;
+  background: #eee;
   padding: 10px;
   border-radius: 8px;
+  min-height: 150px;
+  border-top:3px solid #194a7a;
 }
 
-.project-board {
-  display: flex;
-  flex-direction: column;
+.task-column h3{
+  margin-bottom: 4px;
 }
 
-.column {
-  border: 1px solid #ccc;
-  margin: 10px;
-  padding: 10px;
-  width: 30%;
+.closeModalBtn{
+  all: unset;
 }
 
-.add-task {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
-}
 
-.add-task input {
-  padding: 5px;
-  margin-bottom: 5px;
-}
 
-.add-task button {
-  padding: 5px;
-  cursor: pointer;
-}
 
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
 
-li {
-  padding: 5px;
-  border-bottom: 1px solid #ccc;
-}
+

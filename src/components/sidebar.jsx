@@ -1,26 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { Home, FolderKanban, Hourglass, LogOut } from "lucide-react";
 import "./sidebar.css"; 
 import { auth } from "../firebase";
 
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged,signOut } from "firebase/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 
 
 
 const menuItems = [
-  { icon: <Home size={20} />, label: "Dashboard" , path:"/Dashboard"},
-  { icon: <FolderKanban size={20} />, label: "Projects"},
+  { icon: <Home size={20} />, label: "Dashboard" , path:"/Dashboard"},,
   { icon: <Hourglass size={20} />, label: "Focus Timer", path:"/FocusTimer"},
   { icon: <LogOut size={20} />, label: "Logout" }
 ];
 
 export default function Sidebar() {
 
+  const sidebarRef = useRef(null);
+  // const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // Close sidebar on outside click
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setIsCollapsed(true); // collapse the sidebar
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const [userInitial, setUserInitial] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [userEmail, setUserEmail] = useState("");
@@ -38,10 +54,21 @@ export default function Sidebar() {
     
       return () => unsubscribe();
     }, []);
+
+    const handleLogout = async () => {
+      try {
+        await signOut(auth);
+        navigate("/"); // or "/home" if your home page is at that route
+      } catch (error) {
+        console.error("Error logging out:", error);
+      }
+    };
       
 
   return (
-    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+    <div ref={sidebarRef} className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+
+      
       {/* Header */}
       <div className="sideHeader">
         
@@ -64,13 +91,18 @@ export default function Sidebar() {
       <nav>
         {menuItems.map((item, index) => {
           const isActive = location.pathname === item.path;
-          console.log(location.pathname);
 
           return(
             <div
               key={index}
               className={`menu-item ${isCollapsed ? 'collapsed' : ''} ${isActive ? 'active' : ''}`}
-              onClick={() => navigate(item.path)}
+              onClick={() => {
+                if (item.label === "Logout") {
+                  handleLogout();
+                } else {
+                  navigate(item.path);
+                }
+              }}
             >
               {item.icon}
               {!isCollapsed && <span>{item.label}</span>}
