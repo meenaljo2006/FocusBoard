@@ -1,0 +1,74 @@
+body, html {
+margin: 0;
+padding: 0;
+}
+
+.focus-timer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 1rem;
+}
+
+.focus-timer-container {
+  margin-left: 80px; /* Width of sidebar */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Responsive circular timer */
+.timer {
+width: 40vw;
+height: 40vw;
+max-width: 250px;
+max-height: 250px;
+border-radius: 50%;
+background-color: #e0e0e0;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 5vw;
+margin: 20px 0;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.controls button{
+  background-color:#194a7a;
+}
+
+.controls button :hover{
+  opacity: 0.9;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 500px) {
+  .timer {
+    width: 50vw;
+    height: 50vw;
+    font-size: 7vw;
+  }
+}
+
+.controls button {
+font-size: 1rem;
+padding: 10px 15px;
+margin: 5px;
+cursor: pointer;
+}
+
+.time-selector {
+margin: 1rem 0;
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 1rem;
+flex-wrap: wrap;
+justify-content: center;
+}
+

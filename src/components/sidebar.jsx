@@ -4,33 +4,40 @@ import "./sidebar.css";
 import { auth } from "../firebase";
 
 import { onAuthStateChanged } from "firebase/auth";
+import { useLocation, useNavigate } from "react-router-dom";
+
+
 
 const menuItems = [
-  { icon: <Home size={20} />, label: "Dashboard" },
-  { icon: <FolderKanban size={20} />, label: "Projects" },
-  { icon: <Hourglass size={20} />, label: "Focus Timer" },
+  { icon: <Home size={20} />, label: "Dashboard" , path:"/Dashboard"},
+  { icon: <FolderKanban size={20} />, label: "Projects"},
+  { icon: <Hourglass size={20} />, label: "Focus Timer", path:"/FocusTimer"},
   { icon: <LogOut size={20} />, label: "Logout" }
 ];
 
 export default function Sidebar() {
-    const [isCollapsed, setIsCollapsed] = useState(false);
-    const [userInitial, setUserInitial] = useState("");
-    const [displayName, setDisplayName] = useState("");
-    const [userEmail, setUserEmail] = useState("");
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (user) => {
-          if (user) {
-            const updatedUser = auth.currentUser;
-            const name = updatedUser.displayName || updatedUser.email;
-            setDisplayName(name);
-            setUserInitial(name?.charAt(0).toUpperCase());
-            setUserEmail(updatedUser.email); // <-- this was missing!
-          }
-        });
-      
-        return () => unsubscribe();
-      }, []);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [userInitial, setUserInitial] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const updatedUser = auth.currentUser;
+          const name = updatedUser.displayName || updatedUser.email;
+          setDisplayName(name);
+          setUserInitial(name?.charAt(0).toUpperCase());
+          setUserEmail(updatedUser.email); // <-- this was missing!
+        }
+      });
+    
+      return () => unsubscribe();
+    }, []);
       
 
   return (
@@ -39,7 +46,7 @@ export default function Sidebar() {
       <div className="sideHeader">
         
         <span className="logo-text"> {!isCollapsed && "Focus Board"}</span>
-        <button class="collapsingBtn" onClick={() => setIsCollapsed(!isCollapsed)} ><img src="src\assets\icon.png"></img></button>
+        <button className="collapsingBtn" onClick={() => setIsCollapsed(!isCollapsed)} ><img src="src\assets\icon.png"></img></button>
       </div>
 
       {/* Profile */}
@@ -54,16 +61,22 @@ export default function Sidebar() {
       </div>
 
       {/* Menu Items */}
-      <nav className="flex-1">
-        {menuItems.map((item, index) => (
-          <div
-            key={index}
-            className={`menu-item ${isCollapsed ? 'collapsed' : ''}`}
-          >
-            {item.icon}
-            {!isCollapsed && <span>{item.label}</span>}
-          </div>
-        ))}
+      <nav>
+        {menuItems.map((item, index) => {
+          const isActive = location.pathname === item.path;
+          console.log(location.pathname);
+
+          return(
+            <div
+              key={index}
+              className={`menu-item ${isCollapsed ? 'collapsed' : ''} ${isActive ? 'active' : ''}`}
+              onClick={() => navigate(item.path)}
+            >
+              {item.icon}
+              {!isCollapsed && <span>{item.label}</span>}
+            </div>
+          );
+        })}
       </nav>
     </div>
   );

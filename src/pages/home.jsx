@@ -7,7 +7,7 @@ import FAQ from "../components/faq.jsx"
 
 import { Link as ScrollLink} from 'react-scroll';
 
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 
 import Logo from '../components/logo'
@@ -49,7 +49,7 @@ function Home() {
   return (
     <>
         <header className='header'>
-        <Link to="/"><Logo /></Link>
+        <a href="/"><Logo /></a>
 
         <nav className="navbar">
             <ScrollLink to="features" smooth={true} duration={500} offset={-70} className="navbar-link">Features</ScrollLink>
