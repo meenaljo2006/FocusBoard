@@ -6,7 +6,7 @@ import Sidebar from "../components/sidebar";
 import Footer from "../components/footer";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { SendHorizontal ,CopyMinus,Trash2 } from 'lucide-react';
+import { SendHorizontal ,CopyMinus,Trash2,Pencil,Save} from 'lucide-react';
 import Modal from "react-modal";
 Modal.setAppElement('#root');
 
@@ -144,6 +144,22 @@ function ProjectsPage() {
     setNewTask("");
   };
 
+  const handleDeleteTask = async (taskId) => {
+    const user = auth.currentUser;
+    if (!user || !selectedProject) return;
+  
+    try {
+      const taskRef = doc(db, "users", user.uid, "projects", selectedProject.id, "tasks", taskId);
+      await deleteDoc(taskRef);
+  
+      setTasks(prev => prev.filter(task => task.id !== taskId));
+      console.log("Deleting task with ID:", taskId);
+    } catch (error) {
+      console.error("Failed to delete task:", error);
+    }
+  };
+  
+
   // Handle Drag and Drop
   const handleOnDragEnd = async (result) => {
     const { destination, source } = result;
@@ -169,6 +185,30 @@ function ProjectsPage() {
 
     setTasks(newTasks);
   };
+
+  const [editingTaskId, setEditingTaskId] = useState(null);
+const [editedTaskName, setEditedTaskName] = useState("");
+
+const startEditingTask = (task) => {
+  setEditingTaskId(task.id);
+  setEditedTaskName(task.name);
+};
+
+const handleUpdateTask = async (taskId) => {
+  const user = auth.currentUser;
+  if (!user || !selectedProject) return;
+
+  const taskRef = doc(db, "users", user.uid, "projects", selectedProject.id, "tasks", taskId);
+  await updateDoc(taskRef, { name: editedTaskName });
+
+  setTasks(prev =>
+    prev.map(t => (t.id === taskId ? { ...t, name: editedTaskName } : t))
+  );
+
+  setEditingTaskId(null);
+  setEditedTaskName("");
+};
+
 
   const statusLabels = {
     todo: "To-Do 📝",
@@ -250,14 +290,31 @@ function ProjectsPage() {
                     {tasks.filter(task => task.status === status).map((task, index) => (
                       <Draggable key={task.id} draggableId={task.id} index={index}>
                         {(provided) => (
-                          <div
-                            className="task"
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
+                          <div 
+                            className="task" 
+                            ref={provided.innerRef} 
+                            {...provided.draggableProps} 
                             {...provided.dragHandleProps}
                           >
-                            ⁍ {task.name}
-                          </div>
+                          {task.id === editingTaskId ? (
+                            <>
+                              <input
+                                type="text"
+                                value={editedTaskName}
+                                onChange={(e) => setEditedTaskName(e.target.value)}
+                              />
+                              <button onClick={() => handleUpdateTask(task.id)}><Save size={14}/></button>
+                            </>
+                          ) : (
+                            <>
+                              ⁍ {task.name}
+                              <div className="task-actions">
+                                <button onClick={() => startEditingTask(task)}><Pencil size={14}/></button>
+                                <button onClick={() => handleDeleteTask(task.id)}><Trash2 size={14} /></button>
+                              </div>
+                            </>
+                          )}
+                        </div>
                         )}
                       </Draggable>
                     ))}

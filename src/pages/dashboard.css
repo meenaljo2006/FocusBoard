@@ -139,8 +139,8 @@
 .taskModal {
   background-color: white;
   padding: 20px;
-  max-width: 700px;
-  width: 80%; /* Control the size of the modal */
+  max-width: 750px;
+  width: 85%; /* Control the size of the modal */
   border-radius: 10px;
   border: 1px solid black;
   margin: 0 auto; /* Center the modal */
@@ -150,6 +150,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .addTask{
@@ -158,7 +159,6 @@
 
 .addTask input{
   width:100%;
-  margin-top: 10px;
 }
 
 .addTask button{
@@ -186,33 +186,51 @@
 }
 
 .task-column h3{
-  margin-bottom: 4px;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid black;
+  padding-bottom: 7px;
+}
+
+.task{
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .closeModalBtn{
   all: unset;
 }
 
+.task button {
+  all:unset;
+  margin-left: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.task input {
+  width: 80%;
+  padding: 1px;
+}
+
 /* RESPONSIVE DESIGN */
 
 @media (max-width:390px) {
 
-  /* .project-list li{
-    
-  } */
   .view-btn {
     font-size: x-small;
   }
 
 }
 
-@media (max-width:700px) {
+@media (max-width:730px) {
 
   .task-columns{
     flex-direction: column;
-    
-
   }
+
   .taskModal{
     height: 80%;
     overflow-y: auto;
@@ -230,6 +248,12 @@
   
 }
 
+@media ((max-width:730px) and (min-width:550px)) {
+
+  .taskModal{
+    width: 60%;
+  }
+}
 
 
 
