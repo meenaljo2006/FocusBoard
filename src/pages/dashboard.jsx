@@ -187,27 +187,27 @@ function ProjectsPage() {
   };
 
   const [editingTaskId, setEditingTaskId] = useState(null);
-const [editedTaskName, setEditedTaskName] = useState("");
+  const [editedTaskName, setEditedTaskName] = useState("");
 
-const startEditingTask = (task) => {
-  setEditingTaskId(task.id);
-  setEditedTaskName(task.name);
-};
+  const startEditingTask = (task) => {
+    setEditingTaskId(task.id);
+    setEditedTaskName(task.name);
+  };
 
-const handleUpdateTask = async (taskId) => {
-  const user = auth.currentUser;
-  if (!user || !selectedProject) return;
+  const handleUpdateTask = async (taskId) => {
+    const user = auth.currentUser;
+    if (!user || !selectedProject) return;
 
-  const taskRef = doc(db, "users", user.uid, "projects", selectedProject.id, "tasks", taskId);
-  await updateDoc(taskRef, { name: editedTaskName });
+    const taskRef = doc(db, "users", user.uid, "projects", selectedProject.id, "tasks", taskId);
+    await updateDoc(taskRef, { name: editedTaskName });
 
-  setTasks(prev =>
-    prev.map(t => (t.id === taskId ? { ...t, name: editedTaskName } : t))
-  );
+    setTasks(prev =>
+      prev.map(t => (t.id === taskId ? { ...t, name: editedTaskName } : t))
+    );
 
-  setEditingTaskId(null);
-  setEditedTaskName("");
-};
+    setEditingTaskId(null);
+    setEditedTaskName("");
+  };
 
 
   const statusLabels = {

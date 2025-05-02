@@ -163,7 +163,7 @@ function Register() {
 
           </div>
 
-          <Footer/>
+          {/* <Footer/> */}
              
       </>
   );

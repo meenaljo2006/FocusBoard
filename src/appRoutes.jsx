@@ -4,7 +4,6 @@ import Register from "./pages/register";
 import Dashboard from "./pages/dashboard";
 import FocusTimer from './pages/timer';
 
-
 const AppRoutes = () => {
   return (
     <Routes>

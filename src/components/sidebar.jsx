@@ -1,5 +1,5 @@
 import { useState, useEffect,useRef } from "react";
-import { Home, FolderKanban, Hourglass, LogOut } from "lucide-react";
+import { Home, ChartNoAxesCombined, Hourglass, LogOut } from "lucide-react";
 import "./sidebar.css"; 
 import { auth } from "../firebase";
 
@@ -17,7 +17,6 @@ const menuItems = [
 export default function Sidebar() {
 
   const sidebarRef = useRef(null);
-  // const [isCollapsed, setIsCollapsed] = useState(false);
 
   // Close sidebar on outside click
   useEffect(() => {
