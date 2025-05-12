@@ -29,8 +29,10 @@
     display: flex;
     margin-bottom: 1.5rem;
     background-color: aliceblue;
-    /* justify-content: center; */
     align-items: center;
+    border-bottom:1px solid rgb(194, 191, 191);
+    padding-bottom: 9px;
+    
 }
   
 .sideHeader .logo-text {
