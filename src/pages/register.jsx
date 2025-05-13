@@ -80,6 +80,11 @@ function Register() {
 
     } catch(error){
         console.error(error);
+
+        setEmail("");
+        setPassword("");
+        setSignInError("");
+
         if (error.code === "auth/invalid-credential") {
           setSignInError("User does not exist. Please register first.");
         } else if (error.code === "auth/wrong-password") {
