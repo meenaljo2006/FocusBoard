@@ -1,5 +1,5 @@
 import { useState, useEffect,useRef } from "react";
-import { Home, ChartNoAxesCombined, Hourglass, LogOut } from "lucide-react";
+import { Home, Hourglass, LogOut } from "lucide-react";
 import "./sidebar.css"; 
 import { auth } from "../firebase";
 

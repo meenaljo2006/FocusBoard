@@ -53,6 +53,11 @@ function Register() {
         if (error.code === "auth/invalid-email") {
           setSignUpError("Please enter a valid email address.");
         }
+
+        setName("");
+        setEmail("");
+        setPassword("");
+
     }  
   };
 
@@ -115,7 +120,7 @@ function Register() {
                           <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value) }></input>
                           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value) }></input>
                           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}></input>
-                          {signUpError && <p className="error">{signUpError}</p>} 
+                          {signUpError ? <p className="error">{signUpError}</p> : null}
                           <motion.button whileTap={{ scale: 0.85 }} onClick={signUp}>Sign Up</motion.button>
                           
                       </form>
@@ -137,7 +142,7 @@ function Register() {
                           <span>or use your email account</span>
                           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}></input>
                           <input type="password" placeholder="Password" value={password}onChange={(e) => setPassword(e.target.value)}></input>
-                          {signInError && <p className="error">{signInError}</p>}
+                           {signInError ? <p className="error">{signInError}</p> : null}
                           <motion.button whileTap={{ scale: 0.85 }} onClick={signIn}>Sign In</motion.button>
                       </form>
 

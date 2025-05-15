@@ -93,7 +93,7 @@ function Home() {
 
         <section id="demo" className="demoVideo">
         <h1>See Focus Board in Action</h1>
-        <video controls autoplay loop>
+        <video controls autoPlay muted loop>
             <source src="/src/assets/demo.mp4" type="video/mp4"></source>
             Your browser does not support the video tag.
         </video>
