@@ -63,12 +63,16 @@ function Register() {
 
   const signInWithGoogle = async (e) => {
     e.preventDefault();
-    try{
-        await signInWithPopup(auth,googleProvider);
-        navigate("/Dashboard");
-    } catch(error){
-        console.error(error);
-    }  
+    try {
+      await signInWithPopup(auth, googleProvider);
+      navigate("/Dashboard");
+    } catch (error) {
+      if (error.code === 'auth/popup-closed-by-user') {
+        console.warn('Login popup closed by user.');
+      } else {
+        console.error('Login failed:', error);
+      }
+    }
   };
 
   const signIn = async (e) => {
