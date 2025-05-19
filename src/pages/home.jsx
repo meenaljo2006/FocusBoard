@@ -74,7 +74,7 @@ function Home() {
         <h1>Powerful Tools to Boost Your Productivity</h1>
         <div className="cardSection">
             <div className="feature-card">
-                <img src="/assets/taskmanagement.png" alt="Task Management Icon" class="feature-icon"></img>
+                <img src="/assets/Taskmanagement.png" alt="Task Management Icon" class="feature-icon"></img>
                 <h3 class="feature-title">Task Management</h3>
                 <p>Organize your tasks with customizable boards. Drag and drop for easy prioritization.</p>
             </div>
