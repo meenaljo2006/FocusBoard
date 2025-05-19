@@ -72,7 +72,7 @@ export default function Sidebar() {
       <div className="sideHeader">
         
         <span className="logo-text"> {!isCollapsed && "Focus Board"}</span>
-        <button className="collapsingBtn" onClick={() => setIsCollapsed(!isCollapsed)} ><img src="src\assets\icon.png"></img></button>
+        <button className="collapsingBtn" onClick={() => setIsCollapsed(!isCollapsed)} ><img src="\assets\icon.png"></img></button>
       </div>
 
       {/* Profile */}
