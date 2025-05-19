@@ -66,7 +66,7 @@ function Home() {
             <motion.button whileTap={{ scale: 0.85 }} onClick={handleGetStartedClick}>Get Started</motion.button>
         </div>
         <div className="right">
-            <img src="src/assets/home.png" alt="Home" />
+            <img src="/assets/home.png" alt="Home" />
         </div>
         </div>
         
@@ -74,17 +74,17 @@ function Home() {
         <h1>Powerful Tools to Boost Your Productivity</h1>
         <div className="cardSection">
             <div className="feature-card">
-                <img src="/src/assets/taskmanagement.png" alt="Task Management Icon" class="feature-icon"></img>
+                <img src="/assets/taskmanagement.png" alt="Task Management Icon" class="feature-icon"></img>
                 <h3 class="feature-title">Task Management</h3>
                 <p>Organize your tasks with customizable boards. Drag and drop for easy prioritization.</p>
             </div>
             <div className="feature-card">
-                <img src="/src/assets/progressTracking.jpg" alt="Progress Tracking Icon" class="feature-icon"></img>
+                <img src="/assets/progressTracking.jpg" alt="Progress Tracking Icon" class="feature-icon"></img>
                 <h3 class="feature-title">Progress Tracking</h3>
                 <p>Visualize your achievements and track progress toward your goals in real-time.</p>
             </div>
             <div className="feature-card">
-                <img src="/src/assets/focusTimer.jpg" alt="Focus Timer Icon" class="feature-icon"></img>
+                <img src="/assets/focusTimer.jpg" alt="Focus Timer Icon" class="feature-icon"></img>
                 <h3 class="feature-title">Focus Timer</h3>
                 <p>Enhance productivity with built-in Pomodoro timers and focus sessions.</p>
             </div>
@@ -94,7 +94,7 @@ function Home() {
         <section id="demo" className="demoVideo">
         <h1>See Focus Board in Action</h1>
         <video controls autoPlay muted loop>
-            <source src="/src/assets/demo.mp4" type="video/mp4"></source>
+            <source src="/assets/demo.mp4" type="video/mp4"></source>
             Your browser does not support the video tag.
         </video>
         </section>
