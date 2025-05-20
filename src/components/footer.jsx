@@ -6,7 +6,7 @@ function Footer(){
         <>
 
             <footer className="footer">
-                <p>Made by @MeenalJoshi @Prerna Sharma</p>
+                <p>Made by @MeenalJoshi</p>
                 <p>© 2025 All Rights Reserved</p>
             </footer>
         
